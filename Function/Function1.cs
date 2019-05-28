@@ -14,7 +14,7 @@ namespace Function
     {
         [FunctionName("Function1")]
 
-        public  static async void Run([TimerTrigger("0 */3 * * * *")] TimerInfo myTimer, ILogger log)
+        public  static async void Run([TimerTrigger("0 */20 * * * *")] TimerInfo myTimer, ILogger log)
         {
 
             log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
@@ -52,6 +52,10 @@ namespace Function
                     log.LogError($"{sendResult.Message}");
                 }
 
+            }
+            else
+            {
+                log.LogInformation("Configuration value was false");
             }
 
         }
