@@ -31,13 +31,18 @@ namespace Function
             if (activeFlag == "true")
             {
 
-                var message = new PostmarkMessage()
+                var message = new TemplatedPostmarkMessage()
                 {
                     To = "support@happyatwork.se",
                     From = "info@happyatwork.se",
-                    Subject = "Coding exercise",
-                    TextBody = "Hello!",
+                    TemplateId = 111718460,
+                    TemplateModel = new
+                    {
+                        name = "Happy@Work Support",
+                    }
+
                 };
+
 
                 string postmarkToken = Environment.GetEnvironmentVariable("POSTMARK_TOKEN");
 
@@ -50,6 +55,7 @@ namespace Function
                     log.LogError("Error occured");
                     log.LogError($"{sendResult.ErrorCode}");
                     log.LogError($"{sendResult.Message}");
+                    
                 }
 
             }
