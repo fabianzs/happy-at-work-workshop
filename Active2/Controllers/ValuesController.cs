@@ -10,20 +10,18 @@ namespace Active2.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        bool active = true;
-
         // GET api/values
         [HttpGet]
         public ActionResult<bool> Get()
         {
-            return active;
+            return Environment.GetEnvironmentVariable("ACTIVE") != "false";
         }
 
         // POST api/values
         [HttpPost]
         public void Post([FromBody] bool value)
         {
-            active = value;
+            Environment.SetEnvironmentVariable("ACTIVE", value.ToString());
         }
     }
 }
